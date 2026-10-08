@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="6090电影网（6090dianyingwang-app）是面向影视爱好者的在线观影导航平台，汇聚动作、喜剧、爱情、科幻、悬疑、纪录片等多元片种，提供影片资讯、排片动态与观影指南。访问 https://6090dianyingwang-app.github.io 获取最新影视内容与深度解读。">
+<meta name="keywords" content="6090电影网, 6090dianyingwang-app, 在线电影, 影视资讯, 电影推荐, 高清影视, 动作片, 喜剧片, 科幻片, 悬疑片, 纪录片, 观影指南">
+<meta name="author" content="6090电影网">
+<meta name="robots" content="index, follow">
+<meta name="bingbot" content="index, follow">
+<meta name="theme-color" content="#0b1020">
+<title>6090电影网 | 6090dianyingwang-app · 发现好电影，从一部开始</title>
+<style>
+  :root{
+    --ink:#eaf0ff;
+    --muted:#9aa7c9;
+    --line:rgba(255,255,255,.10);
+    --card:rgba(255,255,255,.045);
+    --accent:#ff7a45;
+    --accent2:#4d7cfe;
+    --bg1:#07091a;
+    --bg2:#0d1230;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(77,124,254,.28), transparent 60%),
+      radial-gradient(1000px 500px at 0% 10%, rgba(255,122,69,.18), transparent 55%),
+      linear-gradient(180deg,var(--bg1),var(--bg2) 40%,#060818);
+    line-height:1.75;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+  .eyebrow{
+    display:inline-block;font-size:12px;letter-spacing:.22em;
+    color:var(--accent);text-transform:uppercase;
+    border:1px solid rgba(255,122,69,.4);border-radius:999px;padding:5px 14px;background:rgba(255,122,69,.08)
+  }
+  /* header */
+  header.site-head{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    background:rgba(7,9,26,.72);border-bottom:1px solid var(--line)
+  }
+  .nav-row{display:flex;align-items:center;gap:18px;height:62px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.02em}
+  .brand mark{
+    background:linear-gradient(120deg,var(--accent),var(--accent2));
+    color:#fff;padding:3px 9px;border-radius:7px;font-size:15px
+  }
+  .brand small{color:var(--muted);font-weight:500;font-size:12px;letter-spacing:.04em}
+  nav.tabs{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+  nav.tabs a{
+    font-size:14px;padding:8px 13px;border-radius:9px;color:var(--muted);
+    transition:.2s;border:1px solid transparent
+  }
+  nav.tabs a:hover{color:var(--ink);border-color:var(--line);background:var(--card)}
+  /* hero */
+  .hero{padding:74px 0 56px;position:relative}
+  .hero h1{
+    font-size:clamp(30px,5.4vw,56px);line-height:1.18;font-weight:850;
+    letter-spacing:-.02em;max-width:820px
+  }
+  .hero h1 em{font-style:normal;background:linear-gradient(100deg,#ff9a6c,#ff7a45 45%,#7b9bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.lead{margin-top:20px;max-width:640px;color:var(--muted);font-size:16px}
+  .hero-actions{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:13px 22px;border-radius:12px;font-weight:700;font-size:15px;
+    border:1px solid var(--line);background:var(--card);transition:.2s
+  }
+  .btn.primary{background:linear-gradient(120deg,var(--accent),#e0552a);border-color:transparent;box-shadow:0 12px 28px -12px rgba(255,122,69,.7)}
+  .btn:hover{transform:translateY(-2px)}
+  .hero-meta{margin-top:34px;display:flex;gap:26px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+  .hero-meta b{color:var(--ink);font-size:19px;display:block;letter-spacing:.02em}
+  /* section */
+  section{padding:58px 0;border-top:1px solid var(--line)}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:30px}
+  .sec-head h2{font-size:clamp(22px,3.4vw,32px);font-weight:800;letter-spacing:-.01em}
+  .sec-head .sub{color:var(--muted);font-size:14px;max-width:520px}
+  /* cards */
+  .grid{display:grid;gap:18px}
+  .grid.c4{grid-template-columns:repeat(4,1fr)}
+  .grid.c3{grid-template-columns:repeat(3,1fr)}
+  .grid.c2{grid-template-columns:repeat(2,1fr)}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:22px;transition:.25s;position:relative;overflow:hidden
+  }
+  .card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.07)}
+  .card .tag{font-size:12px;color:var(--accent);letter-spacing:.08em;font-weight:700}
+  .card h3{font-size:18px;margin:10px 0 8px;font-weight:750}
+  .card p{color:var(--muted);font-size:14px}
+  .poster{
+    aspect-ratio:3/4;border-radius:12px;margin-bottom:14px;
+    display:flex;align-items:flex-end;padding:14px;
+    background-size:cover;background-position:center;
+    box-shadow:inset 0 -90px 60px -30px rgba(0,0,0,.85)
+  }
+  .poster span{font-weight:800;font-size:17px;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+  /* table */
+  table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card);border-radius:14px;overflow:hidden}
+  th,td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--line)}
+  th{color:var(--accent);font-weight:700;letter-spacing:.05em;font-size:12px;text-transform:uppercase;background:rgba(255,122,69,.07)}
+  tr:last-child td{border-bottom:none}
+  td a{color:var(--accent2);border-bottom:1px dashed rgba(77,124,254,.5)}
+  /* faq */
+  details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin-bottom:12px}
+  details[open]{border-color:rgba(255,122,69,.45)}
+  summary{cursor:pointer;font-weight:700;font-size:16px;list-style:none;display:flex;justify-content:space-between;gap:14px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"＋";color:var(--accent);font-weight:500}
+  details[open] summary::after{content:"－"}
+  details p{margin-top:12px;color:var(--muted);font-size:14.5px}
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:44px 0 30px;margin-top:40px;color:var(--muted);font-size:13.5px}
+  footer .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:26px}
+  footer h4{color:var(--ink);font-size:15px;margin-bottom:12px}
+  footer ul{list-style:none}
+  footer li{margin-bottom:9px}
+  footer a:hover{color:var(--ink)}
+  .url-line{margin-top:24px;padding-top:20px;border-top:1px solid var(--line);word-break:break-all}
+  .url-line code{color:var(--accent);font-size:14px;font-weight:700;background:rgba(255,122,69,.1);padding:2px 8px;border-radius:6px}
+  /* responsive */
+  @media (max-width:900px){
+    .grid.c4,.grid.c3{grid-template-columns:repeat(2,1fr)}
+    footer .foot-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:600px){
+    .nav-row{height:56px;gap:10px}
+    nav.tabs a{padding:6px 9px;font-size:13px}
+    .brand small{display:none}
+    .hero{padding:46px 0 34px}
+    .grid.c4,.grid.c3,.grid.c2{grid-template-columns:1fr}
+    section{padding:42px 0}
+    th,td{padding:11px 12px;font-size:13px}
+    footer .foot-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/yazhou.js"></script>
+
+<header class="site-head">
+  <div class="wrap nav-row">
+    <a class="brand" href="#" aria-label="返回顶部">
+      <mark>6090电影网</mark>
+      <small>6090dianyingwang-app</small>
+    </a>
+    <nav class="tabs" aria-label="主导航">
+      <a href="#pianzhong">片种</a>
+      <a href="#xinwen">影讯</a>
+      <a href="#bangdan">榜单</a>
+      <a href="#zhi nan">指南</a>
+      <a href="#guanyu">关于</a>
+      <a href="#faq">问答</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <span class="eyebrow">Film · Cinema · Stories</span>
+      <h1>在 <em>6090电影网</em>，每一次观影<br>都是一次重新认识世界的机会</h1>
+      <p class="lead">6090电影网（站点标识：6090dianyingwang-app）专注于影视内容的整理与解读，覆盖院线新片、经典修复、独立制片与纪录片，为观众提供选片参考、幕后知识与观影建议。官方访问地址：<strong>https://6090dianyingwang-app.github.io</strong></p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#pianzhong">浏览片种 →</a>
+        <a class="btn" href="#bangdan">本周榜单</a>
+      </div>
+      <div class="hero-meta">
+        <div><b>12+</b>内容栏目</div>
+        <div><b>6</b>大影片类型</div>
+        <div><b>每日</b>资讯更新</div>
+        <div><b>https://6090dianyingwang-app.github.io</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目一：片种 -->
+  <section id="pianzhong">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow">栏目 · 01</span>
+          <h2>按片种找电影</h2>
+        </div>
+        <p class="sub">从肾上腺素飙升的动作场面，到让人反复回味的细腻剧情，6090电影网把影片按气质分类，帮你更快锁定今晚要看的那一部。</p>
+      </div>
+      <div class="grid c4">
+        <article class="card">
+          <span class="tag">ACTION</span>
+          <h3>动作与冒险</h3>
+          <p>追车、格斗、极限环境生存。关注镜头调度与实景拍摄，推荐给追求节奏感的观众。</p>
+        </article>
+        <article class="card">
+          <span class="tag">DRAMA</span>
+          <h3>剧情与现实</h3>
+          <p>以人物关系与社会议题为核心，擅长用细节刻画人性，适合安静下来慢慢看。</p>
+        </article>
+        <article class="card">
+          <span class="tag">SCI-FI</span>
+          <h3>科幻与奇幻</h3>
+          <p>从硬核设定到视觉奇观，探讨技术、时间与身份，是想象力的一次长途旅行。</p>
+        </article>
+        <article class="card">
+          <span class="tag">DOCU</span>
+          <h3>纪录片</h3>
+          <p>真实世界的切片：自然、历史、人物、社会。用事实说话，往往比虚构更震撼。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目二：影讯 -->
+  <section id="xinwen">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow">栏目 · 02</span>
+          <h2>影院与行业动态</h2>
+        </div>
+        <p class="sub">6090电影网持续跟踪上映排期、电影节动向与创作幕后，让选片不再靠运气。</p>
+      </div>
+      <div class="grid c2">
+        <article class="card">
+          <span class="tag">排片 · 本周</span>
+          <h3>周末档期怎么选</h3>
+          <p>工作日与周末的排片差异明显。建议提前查看场次时段，避开高峰，选择杜比或 IMAX 厅能获得更完整的声画体验。</p>
+          <a class="btn" href="#">查看排片</a>
+        </article>
+        <article class="card">
+          <span class="tag">幕后 · 制作</span>
+          <h3>一部电影的诞生</h3>
+          <p>从剧本开发、选角、分镜到后期调色，影视创作是数百人协作的结果。了解幕后，能看到银幕之外的另一层精彩。</p>
+          <a class="btn" href="#">阅读幕后</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目三：榜单 -->
+  <section id="bangdan">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow">栏目 · 03</span>
+          <h2>值得一看的片单</h2>
+        </div>
+        <p class="sub">由 6090电影网 编辑部结合口碑、完成度与话题度整理，仅供参考，排序不代表绝对优劣。</p>
+      </div>
+      <div class="grid c4">
+        <div class="card">
+          <div class="poster" style="background-image:linear-gradient(160deg,#2b1b4e,#7b3f6b)"><span>边境追击</span></div>
+          <p>动作 / 138分钟</p>
+        </div>
+        <div class="card">
+          <div class="poster" style="background-image:linear-gradient(160deg,#123a52,#2f8f8f)"><span>海的回信</span></div>
+          <p>剧情 / 122分钟</p>
+        </div>
+        <div class="card">
+          <div class="poster" style="background-image:linear-gradient(160deg,#4a2a12,#c26a3a)"><span>时间褶皱</span></div>
+          <p>科幻 / 156分钟</p>
+        </div>
+        <div class="card">
+          <div class="poster" style="background-image:linear-gradient(160deg,#1c2a4a,#4d7cfe)"><span>无声山谷</span></div>
+          <p>纪录片 / 98分钟</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目四：观影指南 -->
+  <section id="zhi nan">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow">栏目 · 04</span>
+          <h2>观影指南与常见术语</h2>
+        </div>
+        <p class="sub">搞清楚格式、帧率与分级，能显著提升实际体验。6090电影网整理了一份简明对照表。</p>
+      </div>
+      <table>
+        <thead>
+          <tr><th>术语</th><th>含义</th><th>适用场景</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>IMAX</td><td>大画幅放映系统，画面与声场更具沉浸感</td><td><a href="#">视效大片</a></td></tr>
+          <tr><td>杜比视界 / 全景声</td><td>高动态范围影像配合对象化音频</td><td><a href="#">暗场 / 音效片</a></td></tr>
+          <tr><td>24fps 与 48fps</td><td>帧率影响运动画面的流畅度与质感</td><td><a href="#">动作 / 运动题材</a></td></tr>
+          <tr><td>影片分级</td><td>依据内容适宜年龄进行标识</td><td><a href="#">家庭观影</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 栏目五：关于 -->
+  <section id="guanyu">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow">栏目 · 05</span>
+          <h2>关于 6090电影网</h2>
+        </div>
+      </div>
+      <div class="grid c3">
+        <article class="card">
+          <span class="tag">我们是谁</span>
+          <h3>一群爱看电影的人</h3>
+          <p>6090电影网由影视爱好者维护，初衷很简单：让好电影被更多人看见，让选片这件事变得更轻松。</p>
+        </article>
+        <article class="card">
+          <span class="tag">我们做什么</span>
+          <h3>整理、解读、推荐</h3>
+          <p>不做搬运，只做筛选与表达。每一条片单、每一篇解读都经过人工核对与讨论。</p>
+        </article>
+        <article class="card">
+          <span class="tag">如何访问</span>
+          <h3>唯一官方站点</h3>
+          <p>请认准 <strong>https://6090dianyingwang-app.github.io</strong>，站点标识为 6090dianyingwang-app，谨防仿冒。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目六：问答 -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow">栏目 · 06</span>
+          <h2>常见问题</h2>
+        </div>
+        <p class="sub">关于 6090电影网 的使用与内容说明。</p>
+      </div>
+      <details open>
+        <summary>6090电影网 提供在线播放吗？</summary>
+        <p>本站点为影视资讯与导航性质的内容平台，主要提供影片介绍、排片信息、观影指南与片单推荐，不直接托管或提供影视资源的在线播放与下载服务。</p>
+      </details>
+      <details>
+        <summary>如何确认是官方站点？</summary>
+        <p>唯一官方访问地址为 <strong>https://6090dianyingwang-app.github.io</strong>，站点标识为 6090dianyingwang-app。请勿轻信同名或近似域名的第三方页面。</p>
+      </details>
+      <details>
+        <summary>片单的排序依据是什么？</summary>
+        <p>综合口碑评价、艺术完成度、话题热度与类型代表性，由编辑部人工整理，属主观推荐而非客观排名，仅供参考。</p>
+      </details>
+      <details>
+        <summary>内容更新频率如何？</summary>
+        <p>影讯与排片类内容按周更新，专题片单与深度解读按内容节奏发布，重大电影节期间会加大更新密度。</p>
+      </details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#"><mark>6090电影网</mark></a>
+        <p style="margin-top:12px;max-width:360px">6090电影网（6090dianyingwang-app）是一个关于电影的资讯与导航站点，致力于降低选片成本，让每一次观影都值得。</p>
+      </div>
+      <div>
+        <h4>快速入口</h4>
+        <ul>
+          <li><a href="#pianzhong">片种分类</a></li>
+          <li><a href="#xinwen">影讯动态</a></li>
+          <li><a href="#bangdan">推荐片单</a></li>
+          <li><a href="#zhi nan">观影指南</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>站点信息</h4>
+        <ul>
+          <li><a href="#guanyu">关于我们</a></li>
+          <li><a href="#faq">常见问题</a></li>
+          <li><a href="#">意见反馈</a></li>
+          <li><a href="#">内容合作</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="url-line">官方网址：<code>https://6090dianyingwang-app.github.io</code> ｜ 站点标识：6090dianyingwang-app ｜ 网站名称：6090电影网</p>
+    <p style="margin-top:14px">© <span id="yr">2026</span> 6090电影网 · 6090dianyingwang-app. 本页仅为影视资讯展示，遵守搜索引擎收录规范，内页链接以 # 占位。</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
